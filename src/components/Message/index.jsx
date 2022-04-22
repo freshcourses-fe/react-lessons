@@ -6,11 +6,11 @@ class Message extends React.Component {
       id,
       author = 'Author',
       message = 'message',
-      isImportant,
+      isImportant = false,
     } = this.props;
     const styles = {
       padding: '10px',
-      backgroundColor: isImportant ? 'violet': 'green',
+      backgroundColor: isImportant ? 'violet' : 'green',
       width: '300px',
       color: 'white',
       margin: '10px',
@@ -18,7 +18,7 @@ class Message extends React.Component {
 
     return (
       <article id={id} style={styles}>
-        {isImportant ? <strong>IMPORTANT MESSAGE</strong> : null}
+        {isImportant && <strong>IMPORTANT MESSAGE</strong>}
         <h2>{author}</h2>
         <p>{message}</p>
       </article>

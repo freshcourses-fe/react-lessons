@@ -8,9 +8,9 @@ function App() {
     <>
       <Header />
       <main>
-        <Message id="first" author="Jerry" message="Hello there" isImportant={true}/>
+        <Message id="first" author="Jerry" message="Hello there" isImportant />
         <Message id="second" author="Tom" message="Hello to you too" />
-        <Message id="third" author="Jerry" message="Bye" />
+        <Message id="third" author="Jerry" message="Bye" isImportant />
         <Message />
       </main>
     </>
