@@ -1,6 +1,19 @@
 import React from 'react';
 import './style.css';
 class Message extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      isRead: false,
+    };
+  }
+  toggleIsRead = () => {
+    this.setState({
+      isRead: !this.state.isRead
+    });
+  };
+
   render() {
     const {
       id,
@@ -8,6 +21,9 @@ class Message extends React.Component {
       message = 'message',
       isImportant = false,
     } = this.props;
+
+    const { isRead } = this.state;
+
     const styles = {
       padding: '10px',
       backgroundColor: isImportant ? 'violet' : 'green',
@@ -16,13 +32,17 @@ class Message extends React.Component {
       margin: '10px',
     };
 
-    return (
-      <article id={id} style={styles}>
+    const element = (
+      <article id={id} style={styles} onClick={this.toggleIsRead}>
         {isImportant && <strong>IMPORTANT MESSAGE</strong>}
         <h2>{author}</h2>
         <p>{message}</p>
+        {isRead && <small>ПРОЧИТАНО</small>}
+        <input/>
       </article>
     );
+
+    return element;
   }
 }
 
