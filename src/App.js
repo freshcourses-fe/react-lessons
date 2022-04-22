@@ -8,7 +8,7 @@ function App() {
     <>
       <Header />
       <main>
-        <Message id="first" author="Jerry" message="Hello there" />
+        <Message id="first" author="Jerry" message="Hello there" isImportant={true}/>
         <Message id="second" author="Tom" message="Hello to you too" />
         <Message id="third" author="Jerry" message="Bye" />
         <Message />
