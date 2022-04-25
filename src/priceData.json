@@ -1,0 +1,37 @@
+[
+  {
+    "id": 1,
+    "name": "Xiaophone",
+    "model": "XX",
+    "price": 15000,
+    "isAvalible": true
+  },
+  {
+    "id": 2,
+    "name": "iMobila",
+    "model": "PRO 999",
+    "price": 9999999,
+    "isAvalible": true
+  },
+  {
+    "id": 3,
+    "name": "Motorylo",
+    "model": "Note 9001",
+    "price": 7800,
+    "isAvalible": false
+  },
+  {
+    "id": 4,
+    "name": "Macrophone",
+    "model": "Door 4",
+    "price": 25000,
+    "isAvalible": true
+  },
+  {
+    "id": 5,
+    "name": "Xiaophone",
+    "model": "XX",
+    "price": 23523,
+    "isAvalible": true
+  }
+]
