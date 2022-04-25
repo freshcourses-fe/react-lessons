@@ -10,7 +10,7 @@ class Message extends React.Component {
   }
   toggleIsRead = () => {
     this.setState({
-      isRead: !this.state.isRead
+      isRead: !this.state.isRead,
     });
   };
 
@@ -32,17 +32,15 @@ class Message extends React.Component {
       margin: '10px',
     };
 
-    const element = (
-      <article id={id} style={styles} onClick={this.toggleIsRead}>
+    return (
+      <article style={styles} onClick={this.toggleIsRead}>
         {isImportant && <strong>IMPORTANT MESSAGE</strong>}
         <h2>{author}</h2>
         <p>{message}</p>
         {isRead && <small>ПРОЧИТАНО</small>}
-        <input/>
+        
       </article>
     );
-
-    return element;
   }
 }
 

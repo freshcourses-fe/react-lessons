@@ -1,46 +1,51 @@
 import './App.css';
 import React from 'react';
-import Message from './components/Message';
 import Header from './components/Header';
+import MessageList from './components/MessageList';
+import messagesDb from './data';
+class App extends React.Component {
+  constructor(props) {
+    super(props);
 
-function App() {
-  const messages = [
-    {
-      author: 'Jerry',
-      message: 'Hello there',
-      isImportant: true,
-    },
-    {
-      author: 'Tom',
-      message: 'Hello to you too',
-      isImportant: false,
-    },
-    {
-      author: 'Jerry',
-      message: 'Hello there 2',
-      isImportant: false,
-    },
-    {
-      isImportant: false,
-    },
-  ];
+    this.state = {
+      messages: messagesDb,
+      isReversed: false,
+    };
+  }
 
-  const messagesElems = messages.map(({author, message, isImportant}, index) => (
-    <Message
-      key={`${author}-${isImportant}-${message}`}
-      author={author}
-      message={message}
-      isImportant={isImportant}
-    />
-  ));
-  return (
-    <>
-      <Header />
-      <main>
-        {messagesElems}
-      </main>
-    </>
-  );
+  sortMessages = () => {
+    const { messages, isReversed } = this.state;
+
+    const messagesCopy = JSON.parse(JSON.stringify(messages));
+
+    this.setState({
+      isReversed: !isReversed,
+      messages: messagesCopy.sort((a, b) => {
+        if (isReversed) {
+          return a.id - b.id;
+        }
+
+        return b.id - a.id;
+      }),
+    });
+  };
+
+  render() {
+    const { messages, isReversed } = this.state;
+    return (
+      <>
+        <Header />
+        <main>
+          <p>
+            Сейчас сообщения находятся в порядке{' '}
+            {isReversed ? 'убывания' : 'возрастания'}
+          </p>
+          <button onClick={this.sortMessages}>Пересортировать сообщения</button>
+          <MessageList messages={messages} />
+        </main>
+      </>
+    );
+  }
 }
 
 export default App;
