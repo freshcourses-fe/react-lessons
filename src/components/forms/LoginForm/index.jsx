@@ -1,28 +1,29 @@
-import React from 'react';
+import React from "react";
 
 class LoginForm extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      email: 'tests',
-      password: '',
+      email: "tests",
+      password: "",
     };
   }
 
   handleFormSubmit = (e) => {
     // const {email} = this.state;
     const {
-      email: { value },
+      //email: { value },
+      password: { value },
     } = e.target.elements;
     e.preventDefault();
     console.log(value);
     // console.log(email);
   };
 
-  handleEmailChange = (e) => {
+  handleInputChange = (e) => {
     this.setState({
-      email: e.target.value,
+      [e.target.name]: e.target.value,
     });
   };
 
@@ -31,14 +32,14 @@ class LoginForm extends React.Component {
     return (
       <form onSubmit={this.handleFormSubmit}>
         <input
-          onChange={this.handleEmailChange}
+          onChange={this.handleInputChange}
           value={email}
           type="text"
           name="email"
           placeholder="email"
         />
         <input
-          onChange={this.handleEmailChange}
+          onChange={this.handleInputChange}
           value={password}
           type="password"
           name="password"
