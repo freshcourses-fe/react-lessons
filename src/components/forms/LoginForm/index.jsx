@@ -1,4 +1,5 @@
 import React from 'react';
+import styles from './LoginForm.module.css';
 
 class LoginForm extends React.Component {
   constructor(props) {
@@ -11,13 +12,11 @@ class LoginForm extends React.Component {
   }
 
   handleFormSubmit = (e) => {
-    // const {email} = this.state;
     const {
       email: { value },
     } = e.target.elements;
     e.preventDefault();
     console.log(value);
-    // console.log(email);
   };
 
   handleEmailChange = (e) => {
@@ -26,19 +25,25 @@ class LoginForm extends React.Component {
     });
   };
 
+  handleInputChange = ({ target: { value, name } }) => {
+    this.setState({
+      [name]: value,
+    });
+  };
+
   render() {
     const { email, password } = this.state;
     return (
-      <form onSubmit={this.handleFormSubmit}>
+      <form onSubmit={this.handleFormSubmit} className={styles.container}>
         <input
-          onChange={this.handleEmailChange}
+          onChange={this.handleInputChange}
           value={email}
           type="text"
           name="email"
           placeholder="email"
         />
         <input
-          onChange={this.handleEmailChange}
+          onChange={this.handleInputChange}
           value={password}
           type="password"
           name="password"

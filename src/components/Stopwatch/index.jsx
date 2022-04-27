@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import styles from './StopWatch.module.css';
 
 class StopWatch extends Component {
   constructor(props) {
@@ -54,11 +55,13 @@ class StopWatch extends Component {
   render() {
     const { time } = this.state;
     return (
-      <article>
-        <h1>{time}</h1>
+      <article className={styles.container}>
+        <h1 className={styles.watchTime}>{time}</h1>
+        <div>
           <button onClick={this.start}>Start</button>
           <button onClick={this.stop}>Stop</button>
           <button onClick={this.reset}>Reset</button>
+        </div>
       </article>
     );
   }
