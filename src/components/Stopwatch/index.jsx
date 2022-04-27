@@ -5,13 +5,18 @@ class StopWatch extends Component {
     super(props);
     this.state = {
       time: 0,
+      intervalId: null,
     };
-    this.intervalId = null;
+    this.isRendered = false;
   }
 
   componentDidMount() {
+    if (this.isRendered) {
+      return;
+    }
+    this.isRendered = true;
     console.log('mount');
-    if (!this.intervalId) {
+    if (!this.state.intervalId) {
       this.start();
     }
   }
@@ -22,26 +27,28 @@ class StopWatch extends Component {
 
   componentWillUnmount() {
     console.log('unmount');
-
     this.stop();
   }
 
   start = () => {
-    this.intervalId = setInterval(() => {
-      this.setState({
-        time: this.state.time + 1,
-      });
-    }, 1000);
+    if (!this.state.intervalId) {
+      const intervalId = setInterval(() => {
+        this.setState({
+          time: this.state.time + 1,
+          intervalId,
+        });
+      }, 1000);
+    }
   };
 
   stop = () => {
-    clearInterval(this.intervalId);
+    clearInterval(this.state.intervalId);
+    this.setState({ intervalId: null });
   };
 
   reset = () => {
     this.stop();
     this.setState({ time: 0 });
-    this.intervalId = null;
   };
 
   render() {
@@ -49,9 +56,9 @@ class StopWatch extends Component {
     return (
       <article>
         <h1>{time}</h1>
-        <button onClick={this.start}>Start</button>
-        <button onClick={this.stop}>Stop</button>
-        <button onClick={this.reset}>Reset</button>
+          <button onClick={this.start}>Start</button>
+          <button onClick={this.stop}>Stop</button>
+          <button onClick={this.reset}>Reset</button>
       </article>
     );
   }
