@@ -6,4 +6,8 @@
   background-color: gray;
   border-radius: 20px;
   margin: 0 auto;
+
+  &:hover {
+    background-color: red;
+  }
 }
