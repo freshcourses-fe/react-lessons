@@ -4,6 +4,7 @@ import Header from './components/Header';
 import LoginForm from './components/forms/LoginForm';
 import StopWatch from './components/Stopwatch';
 import PhoneDashboard from './components/PhoneDasboard';
+import Phone from './components/Phone';
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
       <Header />
       <LoginForm />
       <PhoneDashboard />
+      <Phone />
     </>
   );
 }

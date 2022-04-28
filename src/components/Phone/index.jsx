@@ -1,19 +1,11 @@
 import styles from './Phone.module.scss';
 import cx from 'classnames';
+import PropTypes from 'prop-types';
 
 function Phone({
   phone: { name, model, price, isAvalible, id, isSelected },
   togglePhoneSelection,
 }) {
-  // const stylesObj = {
-  //   backgroundColor: isSelected ? 'green' : 'transparent',
-  // };
-
-  const stylesObj = {
-    [styles.container]: true,
-    [styles.selected]: isSelected,
-  };
-
   return (
     <article
       className={cx(styles.container, { [styles.selected]: isSelected })}
@@ -26,20 +18,30 @@ function Phone({
   );
 }
 
-// function cx(stylesObject) {
-//   return Object.entries(stylesObject)
-//     .filter(([className, condition]) => condition)
-//     .map(([className, condition]) => className)
-//     .join(' ');
-// }
+const phoneObj = {
+  name: PropTypes.string.isRequired,
+  model: PropTypes.string.isRequired,
+  price: PropTypes.number.isRequired,
+  isAvalible: PropTypes.bool,
+  id: PropTypes.number.isRequired,
+  isSelected: PropTypes.bool,
+};
 
-/*
-{
-  styles.container : true ,
-  styles.selected : isSelected
+Phone.propTypes = {
+  togglePhoneSelection: PropTypes.func.isRequired,
+  phone: PropTypes.shape(phoneObj),
+};
+
+Phone.defaultProps = {
+  togglePhoneSelection: () => {},
+  phone: {
+    name: 'ТЫ НЕ ПЕРЕДАЛ ПРОПСЫ',
+    model: 'МИНУС ПРЕМИЯ',
+    price: 999999999999,
+    isAvalible: true,
+    isSelected: true,
+    id: 500000000
+  }
 }
-
-=> 'container selected'
-*/
 
 export default Phone;
