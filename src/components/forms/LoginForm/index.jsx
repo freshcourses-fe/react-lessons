@@ -41,6 +41,7 @@ class LoginForm extends React.Component {
           type="text"
           name="email"
           placeholder="email"
+          className={styles.input}
         />
         <input
           onChange={this.handleInputChange}
@@ -48,6 +49,7 @@ class LoginForm extends React.Component {
           type="password"
           name="password"
           placeholder="password"
+          className={styles.inputDisabled}
         />
         <button>Login</button>
       </form>

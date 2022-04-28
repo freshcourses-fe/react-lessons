@@ -1,0 +1,11 @@
+%text-input {
+  padding: 10px 20px;
+  border-radius: 10px;
+  border: 3px solid black;
+}
+
+@mixin flex($justify-content: flex-start, $align-items: center) {
+  display: flex;
+  align-items: $align-items;
+  justify-content: $justify-content;
+}

@@ -1,0 +1,7 @@
+/*
+расширения
+  Sass
+  JS JSX Snippets
+  CSS Modules
+  ESLint
+*/
