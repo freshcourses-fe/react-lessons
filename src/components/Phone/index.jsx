@@ -1,13 +1,23 @@
+import styles from './Phone.module.scss';
+import cx from 'classnames';
+
 function Phone({
   phone: { name, model, price, isAvalible, id, isSelected },
   togglePhoneSelection,
 }) {
-  const styles = {
-    backgroundColor: isSelected ? 'green' : 'transparent',
+  // const stylesObj = {
+  //   backgroundColor: isSelected ? 'green' : 'transparent',
+  // };
+
+  const stylesObj = {
+    [styles.container]: true,
+    [styles.selected]: isSelected,
   };
 
   return (
-    <article style={styles}>
+    <article
+      className={cx(styles.container, { [styles.selected]: isSelected })}
+    >
       <h2>{`${name} ${model}`}</h2>
       <p>Price: {price}$</p>
       <p>{isAvalible ? 'In stock' : 'Out of stock'}</p>
@@ -15,5 +25,21 @@ function Phone({
     </article>
   );
 }
+
+// function cx(stylesObject) {
+//   return Object.entries(stylesObject)
+//     .filter(([className, condition]) => condition)
+//     .map(([className, condition]) => className)
+//     .join(' ');
+// }
+
+/*
+{
+  styles.container : true ,
+  styles.selected : isSelected
+}
+
+=> 'container selected'
+*/
 
 export default Phone;
