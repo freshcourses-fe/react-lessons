@@ -35,6 +35,19 @@ const Tracker = (props) => {
     };
   }, []);
 
+  // не правильно
+  // if(clicks > 10) {
+  //   useEffect(()=> {
+
+  //   })
+  // }
+
+  // правильно
+  useEffect(() => {
+    if (clicks > 10) {
+    }
+  });
+
   console.log('render');
 
   return (
@@ -45,5 +58,10 @@ const Tracker = (props) => {
     </div>
   );
 };
+
+//не надо использовать хуки в обычных функция
+// function test () {
+//   const [value, setValue] = useState();
+// }
 
 export default Tracker;
