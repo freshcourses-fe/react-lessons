@@ -1,13 +1,17 @@
-import React, { useContext } from 'react';
-import { UserContext } from './../../contexts';
+import { useContext, useState } from 'react';
+import { ThemeContext, UserContext } from '../../contexts';
+import './Header.scss';
 
 function Header(props) {
+  const [theme, toggleTheme] = useContext(ThemeContext);
   const [user, setUser] = useContext(UserContext);
+
   return (
-    <header>
+    <header className={theme}>
       <h1>
-        Hello {user.name} {user.lastName}
+        {user.name} {user.lastName}
       </h1>
+      <button onClick={toggleTheme}>theme</button>
     </header>
   );
 }
