@@ -2,6 +2,7 @@ import './App.css';
 import React, { useState } from 'react';
 import Tracker from './components/Tracker';
 import Message from './components/Message';
+import StopWatch from './components/Stopwatch';
 
 function App() {
   const [isMessagesVisible, setIsMessagesVisible] = useState(true);
@@ -17,7 +18,7 @@ function App() {
         <div>
           <Message isImportant />
           <Message />
-          <Tracker />
+          <StopWatch />
         </div>
       )}
     </>

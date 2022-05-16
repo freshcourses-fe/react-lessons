@@ -1,70 +1,48 @@
-import React, { Component } from 'react';
+import React, { useEffect, useState } from 'react';
+import { format, addSeconds } from 'date-fns';
 import styles from './StopWatch.module.css';
 
-class StopWatch extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      time: 0,
-      intervalId: null,
+function StopWatch(props) {
+  const [time, setTime] = useState(new Date(0, 0, 0, 0, 0, 0));
+  const [intervalId, setIntervalId] = useState(null);
+
+  useEffect(() => {
+    console.log('render');
+    start();
+
+    return () => {
+      stop();
     };
-    this.isRendered = false;
-  }
+  }, []);
 
-  componentDidMount() {
-    if (this.isRendered) {
-      return;
-    }
-    this.isRendered = true;
-    console.log('mount');
-    if (!this.state.intervalId) {
-      this.start();
-    }
-  }
-
-  componentDidUpdate() {
-    console.log('update');
-  }
-
-  componentWillUnmount() {
-    console.log('unmount');
-    this.stop();
-  }
-
-  start = () => {
-    if (!this.state.intervalId) {
-      const intervalId = setInterval(() => {
-        this.setState({
-          time: this.state.time + 1,
-          intervalId,
-        });
+  function start() {
+    if (!intervalId) {
+      const id = setInterval(() => {
+        setTime((time) => addSeconds(time, 1));
       }, 1000);
+      setIntervalId(id);
     }
-  };
-
-  stop = () => {
-    clearInterval(this.state.intervalId);
-    this.setState({ intervalId: null });
-  };
-
-  reset = () => {
-    this.stop();
-    this.setState({ time: 0 });
-  };
-
-  render() {
-    const { time } = this.state;
-    return (
-      <article className={styles.container}>
-        <h1 className={styles.watchTime}>{time}</h1>
-        <div>
-          <button onClick={this.start}>Start</button>
-          <button onClick={this.stop}>Stop</button>
-          <button onClick={this.reset}>Reset</button>
-        </div>
-      </article>
-    );
   }
+
+  function stop() {
+    clearInterval(intervalId);
+    setIntervalId(null);
+  }
+
+  function reset() {
+    setTime(new Date(0, 0, 0, 0, 0, 0));
+  }
+
+  return (
+    <article className={styles.container}>
+      <h1 className={styles.watchTime}>{format(time, 'HH:mm:ss')}</h1>
+      <div>
+        <button onClick={start}>Start</button>
+        <button onClick={stop}>Stop</button>
+        <button onClick={reset}>Reset</button>
+      </div>
+    </article>
+  );
 }
 
 export default StopWatch;
