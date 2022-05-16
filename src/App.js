@@ -6,6 +6,10 @@ import StopWatch from './components/Stopwatch';
 import { UserContext } from './contexts';
 import Header from './components/Header';
 
+/*
+  реализовать на контексте и хуках смену темы
+*/
+
 function App() {
   const [user, setUser] = useState({
     id: 1,
