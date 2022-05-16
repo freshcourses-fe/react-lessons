@@ -3,24 +3,23 @@ import React, { useState } from 'react';
 import Tracker from './components/Tracker';
 import Message from './components/Message';
 import StopWatch from './components/Stopwatch';
+import { UserContext } from './contexts';
+import Header from './components/Header';
 
 function App() {
-  const [isMessagesVisible, setIsMessagesVisible] = useState(true);
-
-  const toggleMessageVisibility = () => {
-    setIsMessagesVisible(!isMessagesVisible);
-  };
-
+  const [user, setUser] = useState({
+    id: 1,
+    name: 'John',
+    lastName: 'Doe',
+  });
   return (
     <>
-      <button onClick={toggleMessageVisibility}>Toggle Messages</button>
-      {isMessagesVisible && (
-        <div>
-          <Message isImportant />
-          <Message />
-          <StopWatch />
-        </div>
-      )}
+      <UserContext.Provider value={[user, setUser]}>
+        <Header />
+        <Message isImportant />
+        <Message />
+        <StopWatch />
+      </UserContext.Provider>
     </>
   );
 }
