@@ -1,10 +1,10 @@
 import './App.css';
 import React, { useState } from 'react';
-import Tracker from './components/Tracker';
-import Message from './components/Message';
-import StopWatch from './components/Stopwatch';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { UserContext } from './contexts';
-import Header from './components/Header';
+import MainPage from './pages/Main';
+import LoginPage from './pages/Login';
+import './App.css';
 
 /*
   реализовать на контексте и хуках смену темы
@@ -17,14 +17,14 @@ function App() {
     lastName: 'Doe',
   });
   return (
-    <>
+    <Router>
       <UserContext.Provider value={[user, setUser]}>
-        <Header />
-        <Message isImportant />
-        <Message />
-        <StopWatch />
+          <Switch>
+            <Route exact path="/" component={MainPage} />
+            <Route path="/login" component={LoginPage} />
+          </Switch>
       </UserContext.Provider>
-    </>
+    </Router>
   );
 }
 
