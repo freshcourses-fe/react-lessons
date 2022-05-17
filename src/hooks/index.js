@@ -20,3 +20,21 @@ export function useData(getData) {
 
   return { data, isLoading, error };
 }
+
+export function useClicker() {
+  const [clicks, setClicks] = useState(0);
+
+  function handleClick() {
+    setClicks((click) => click + 1);
+  }
+
+  useEffect(() => {
+    window.addEventListener('click', handleClick);
+
+    return () => {
+      window.removeEventListener('click', handleClick);
+    };
+  }, []);
+
+  return clicks;
+}

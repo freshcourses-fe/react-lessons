@@ -1,11 +1,10 @@
 import React from 'react';
 import { getUsers } from '../../api';
-import { useData } from '../../hooks';
+import { useClicker, useData } from '../../hooks';
 
 const UserList = (props) => {
-
-
   const { data: users, isLoading, error } = useData(getUsers);
+  const clicks = useClicker();
 
   if (error) {
     return <div>ERROR HAPPENED</div>;
@@ -16,6 +15,7 @@ const UserList = (props) => {
   }
   return (
     <div>
+      <p>Clicks: {clicks}</p>
       <ul>
         {users.map((user) => (
           <li key={user.login.uuid}>
