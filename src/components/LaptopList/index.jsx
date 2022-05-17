@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from 'react';
+import { getLaptops } from '../../api';
 import { useData } from '../../hooks';
 
 const LaptopsList = (props) => {
-  const getLaptops = () =>
-    fetch('/laptops.json').then((response) => response.json());
-
   const { data: laptops, isLoading, error } = useData(getLaptops);
 
   return (

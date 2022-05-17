@@ -7,6 +7,7 @@ import './App.css';
 import CONSTANTS from './constants';
 import LaptopList from './components/LaptopList';
 import LaptopsPage from './pages/Laptops';
+import UsersPage from './pages/Users';
 
 /*
   реализовать на контексте и хуках смену темы
@@ -32,6 +33,7 @@ function App() {
             <Route exact path="/" component={MainPage} />
             <Route path="/login" component={LoginPage} />
             <Route path="/laptops" component={LaptopsPage} />
+            <Route path="/users" component={UsersPage} />
           </Switch>
         </ThemeContext.Provider>
       </UserContext.Provider>
