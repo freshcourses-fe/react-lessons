@@ -1,23 +1,11 @@
 import React, { useEffect, useState } from 'react';
+import { useData } from '../../hooks';
 
 const LaptopsList = (props) => {
-  const [laptops, setLaptops] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const getLaptops = () =>
+    fetch('/laptops.json').then((response) => response.json());
 
-  useEffect(() => {
-    fetch('/laptops.json')
-      .then((response) => response.json())
-      .then((laptops) => {
-        setLaptops(laptops);
-        setError(null);
-      })
-      .catch((e) => {
-        setError(e);
-        setLaptops([]);
-      })
-      .finally(() => setIsLoading(false));
-  }, []);
+  const { data: laptops, isLoading, error } = useData(getLaptops);
 
   return (
     <div>

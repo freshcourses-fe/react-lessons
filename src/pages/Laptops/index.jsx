@@ -13,6 +13,6 @@ const LaptopsPage = () => {
       <Footer />
     </>
   );
-}
+};
 
 export default LaptopsPage;
