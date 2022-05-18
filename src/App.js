@@ -7,6 +7,7 @@ import './App.css';
 import CONSTANTS from './constants';
 import LaptopsPage from './pages/Laptops';
 import UsersPage from './pages/Users';
+import SignUpPage from 'pages/SignUp';
 
 /*
   реализовать на контексте и хуках смену темы
@@ -20,8 +21,12 @@ function App() {
   });
   const [theme, setTheme] = useState(CONSTANTS.THEME.DARK);
 
-  function toggleTheme () {
-    setTheme(theme === CONSTANTS.THEME.DARK ? CONSTANTS.THEME.WHITE : CONSTANTS.THEME.DARK)
+  function toggleTheme() {
+    setTheme(
+      theme === CONSTANTS.THEME.DARK
+        ? CONSTANTS.THEME.WHITE
+        : CONSTANTS.THEME.DARK
+    );
   }
 
   return (
@@ -31,6 +36,7 @@ function App() {
           <Switch>
             <Route exact path="/" component={MainPage} />
             <Route path="/signin" component={LoginPage} />
+            <Route path="/signup" component={SignUpPage} />
             <Route path="/laptops" component={LaptopsPage} />
             <Route path="/users" component={UsersPage} />
           </Switch>
