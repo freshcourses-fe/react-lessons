@@ -1,6 +1,6 @@
 import React from 'react';
-import { getUsers } from '../../api';
-import { useClicker, useData } from '../../hooks';
+import { getUsers } from 'api';
+import { useClicker, useData } from 'hooks';
 
 const UserList = (props) => {
   const { data: users, isLoading, error } = useData(getUsers);
