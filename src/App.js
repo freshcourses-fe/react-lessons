@@ -5,7 +5,6 @@ import MainPage from './pages/Main';
 import LoginPage from './pages/Login';
 import './App.css';
 import CONSTANTS from './constants';
-import LaptopList from './components/LaptopList';
 import LaptopsPage from './pages/Laptops';
 import UsersPage from './pages/Users';
 
@@ -31,7 +30,7 @@ function App() {
         <ThemeContext.Provider value={[theme, toggleTheme]}>
           <Switch>
             <Route exact path="/" component={MainPage} />
-            <Route path="/login" component={LoginPage} />
+            <Route path="/signin" component={LoginPage} />
             <Route path="/laptops" component={LaptopsPage} />
             <Route path="/users" component={UsersPage} />
           </Switch>
