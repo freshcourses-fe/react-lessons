@@ -1,21 +1,25 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { getUsers } from 'api';
 import { useClicker, useData } from 'hooks';
 
 const UserList = (props) => {
+  const divRef = useRef(null);
+  const inputRef = useRef(null);
+
   const { data: users, isLoading, error } = useData(getUsers);
   const clicks = useClicker();
 
-  if (error) {
-    return <div>ERROR HAPPENED</div>;
-  }
+  const handleClick = () => {
+    inputRef.current.focus();
+  };
 
-  if (isLoading) {
-    return <div>LOADING ...</div>;
-  }
   return (
-    <div>
+    <div ref={divRef}>
+      {isLoading && <div>LOADING ...</div>}
+      {error && <div>ERROR HAPPENED</div>}
       <p>Clicks: {clicks}</p>
+      <input ref={inputRef} />
+      <button onClick={handleClick}>Focus on input pls</button>
       <ul>
         {users.map((user) => (
           <li key={user.login.uuid}>
