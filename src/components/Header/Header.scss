@@ -5,3 +5,20 @@
 .white {
   background-color: lightblue;
 }
+
+.headerContainer {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+}
+
+.navList {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding: 10px;
+}
+
+.navLink {
+  color: inherit;
+}
