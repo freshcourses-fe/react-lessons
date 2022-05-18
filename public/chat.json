@@ -1,0 +1,26 @@
+{
+  "messages": [
+    {
+      "id": 1,
+      "text": "text",
+      "authorId": 1
+    },
+    {
+      "id": 2,
+      "text": "text 2",
+      "authorId": 2
+    }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "nickName": "Test",
+      "imageSrc": "https://sdfgs"
+    },
+    {
+      "id": 2,
+      "nickName": "NUll",
+      "imageSrc": "https://sdfgs"
+    }
+  ]
+}
