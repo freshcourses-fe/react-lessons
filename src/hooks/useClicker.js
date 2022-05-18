@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-export default function useClicker() {
+export default function useClicker(elemRef) {
   const [clicks, setClicks] = useState(0);
 
   function handleClick() {
@@ -8,12 +8,13 @@ export default function useClicker() {
   }
 
   useEffect(() => {
-    window.addEventListener('click', handleClick);
+    const elem = elemRef.current;
+    elem.addEventListener('click', handleClick);
 
     return () => {
-      window.removeEventListener('click', handleClick);
+      elem.removeEventListener('click', handleClick);
     };
-  }, []);
+  }, [elemRef]);
 
   return clicks;
 }
