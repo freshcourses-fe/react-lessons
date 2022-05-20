@@ -1,27 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import { Formik, Form, Field } from 'formik';
-import { createTodo, getTodos } from 'api';
 
 const ToDo = (props) => {
   const [todos, setTodos] = useState([]);
 
   const addTodo = async (todoText) => {
-    const result = await createTodo(todoText);
-
-    const newTodo = result.data;
+    const newTodo = {
+      text: todoText,
+      isDone: false,
+      id: Date.now(),
+    };
 
     setTodos([...todos, newTodo]);
   };
-
-  useEffect(() => {
-    const response = getTodos();
-
-    response.then((axiosResponse) => {
-      console.log(axiosResponse.data);
-
-      setTodos(axiosResponse.data);
-    });
-  }, []);
 
   const removeTodo = (id) => {
     // filter
@@ -50,7 +41,10 @@ const ToDo = (props) => {
         <h2>Tasks:</h2>
         <ul>
           {todos.map((todo) => (
-            <li>{JSON.stringify(todo)}</li>
+            <li>
+              {JSON.stringify(todo)}
+              <button onClick={() => removeTodo(todo.id)}>X</button>
+            </li>
           ))}
         </ul>
       </div>
