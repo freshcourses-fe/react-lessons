@@ -1,25 +1,35 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Formik, Form, Field } from 'formik';
+import { createTodo, getTodos } from 'api';
+
 const ToDo = (props) => {
   const [todos, setTodos] = useState([]);
 
-  const addTodo = (todoText) => {
-    const newTodo = {
-      text: todoText,
-      isDone: false,
-      id: Date.now(),
-    };
+  const addTodo = async (todoText) => {
+    const result = await createTodo(todoText);
+
+    const newTodo = result.data;
 
     setTodos([...todos, newTodo]);
   };
 
+  useEffect(() => {
+    const response = getTodos();
+
+    response.then((axiosResponse) => {
+      console.log(axiosResponse.data);
+
+      setTodos(axiosResponse.data);
+    });
+  }, []);
+
   const removeTodo = (id) => {
     // filter
-  }
+  };
 
   const toggleTodoCompletion = (id) => {
     // map
-  }
+  };
 
   const onSubmit = (values, formikBag) => {
     // todo
